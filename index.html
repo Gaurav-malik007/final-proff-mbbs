@@ -117,6 +117,61 @@
       <div class="step-item"><div class="step-num">3</div><div><h3>Study Smarter — Excel in Your Proffs</h3><p>Follow the proven strategy, engage with the community, and walk into your exams confident and prepared.</p></div></div>
     </div>
   </section>
+  <!-- Pricing Section -->
+  <section class="pricing-section reveal">
+    <div class="section-title">
+      <div class="pill-label">Memberships</div>
+      <div class="divider"></div>
+      <h2>Choose Your <span style="color:var(--gold)">Membership Plan</span></h2>
+      <p>Lock in a 20% discount on both premium tiers for a limited time.</p>
+    </div>
+    
+    <div class="pricing-grid">
+      <!-- Plan 1 -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Premium Study Group</h3>
+          <p>Access to all standard textbook notes and practical resources.</p>
+          <div class="price-wrap">
+            <span class="price-old">₹1,249</span>
+            <span class="price-num">₹999</span>
+            <span class="discount-badge">20% OFF</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li>✨ Private Telegram study group access</li>
+          <li>✨ All standard textbook notes uploaded</li>
+          <li>✨ Complete practical materials for all subjects</li>
+          <li>✨ Bedside cases &amp; instrument guides</li>
+          <li>✨ Lifetime updates &amp; support</li>
+        </ul>
+        <button class="plan-cta-btn" onclick="openPlanModal('Premium Study Group (₹999)')">Choose Premium Group</button>
+      </div>
+      
+      <!-- Plan 2 -->
+      <div class="pricing-card featured">
+        <div class="featured-ribbon">🏆 BEST VALUE</div>
+        <div class="pricing-header">
+          <h3>Premium Group + 1:1 Mentorship</h3>
+          <p>Complete study access plus personalized exam guidance.</p>
+          <div class="price-wrap">
+            <span class="price-old">₹1,875</span>
+            <span class="price-num">₹1,500</span>
+            <span class="discount-badge">20% OFF</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li class="bold">🔥 Everything in Premium Study Group</li>
+          <li>✨ <strong>1:1 Personalized Mentorship Session</strong> before exams &amp; practicals directly from me</li>
+          <li>✨ Individual study schedule &amp; strategy mapping</li>
+          <li>✨ Mock viva &amp; bedside case presentation review</li>
+          <li>✨ Direct priority messaging access</li>
+        </ul>
+        <button class="plan-cta-btn" onclick="openPlanModal('Premium Group + 1:1 Session (₹1500)')">Choose Premium + 1:1 Mentorship</button>
+      </div>
+    </div>
+  </section>
+
   <section class="urgency-section reveal">
     <h2>⚡ Don't Wait Until It's Too Late</h2>
     <p>Seats in this cohort are intentionally limited to maintain the quality of mentorship and interaction. Once they're gone, enrolment closes until the next batch.</p>
@@ -150,6 +205,13 @@
             <div class="form-group">
                 <label for="student-phone">WhatsApp Number</label>
                 <input type="tel" id="student-phone" required placeholder="e.g. +91 9876543210">
+            </div>
+            <div class="form-group">
+                <label for="student-plan">Select Plan</label>
+                <select id="student-plan" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 500;">
+                    <option value="Premium Study Group (₹999)">Premium Study Group (₹999)</option>
+                    <option value="Premium Group + 1:1 Session (₹1500)">Premium Group + 1:1 Session (₹1500)</option>
+                </select>
             </div>
             <button type="submit" class="modal-submit-btn" id="modal-submit-btn">
                 <span>Join Premium Group & Get Access</span>
@@ -185,13 +247,12 @@
   const submitBtn = document.getElementById('modal-submit-btn');
   const spinner = document.getElementById('btn-spinner');
 
-  // Intercept all CTA clicks
+  // Intercept all general CTA clicks
   const ctaButtons = document.querySelectorAll('#hero-cta, #urgency-cta, #final-cta');
   ctaButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      modal.classList.add('active');
-      modal.style.display = 'flex';
+      openPlanModal('Premium Study Group (₹999)');
     });
   });
 
@@ -216,11 +277,12 @@
     const name = document.getElementById('student-name').value;
     const email = document.getElementById('student-email').value;
     const phone = document.getElementById('student-phone').value;
+    const plan = document.getElementById('student-plan').value;
     
     try {
       const { data, error } = await supabaseClient
         .from('final_proff_leads')
-        .insert([{ name, email, phone }]);
+        .insert([{ name, email, phone, plan }]);
         
       if (error) {
         console.error('Supabase error:', error);
@@ -234,6 +296,13 @@
       window.location.href = redirectLink;
     }
   });
+
+  // Open modal with pre-selected plan
+  window.openPlanModal = function(planName) {
+    document.getElementById('student-plan').value = planName;
+    modal.classList.add('active');
+    modal.style.display = 'flex';
+  };
 
   // Tab switcher function
   window.switchTab = function(evt, tabId) {
