@@ -643,4 +643,39 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 24px 
     color: var(--white);
 }
 
+/* ===== FORM LAYOUT & MULTI-STEP ===== */
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+.col-6 {
+    flex: 1;
+}
+.qr-container {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.qr-image {
+    width: 170px;
+    height: auto;
+    border-radius: 12px;
+    margin: 0 auto 12px;
+    display: block;
+    border: 4px solid var(--white);
+}
+.amount-display {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+}
+.upi-id-display {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
 
