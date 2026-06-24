@@ -1,4 +1,4 @@
-﻿/* ===== CSS RESET & ROOT ===== */
+/* ===== CSS RESET & ROOT ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -305,3 +305,56 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 24px 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+/* ===== SUBJECTS TAGS BAR ===== */
+.subjects-tags-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: -10px auto 45px;
+    max-width: 800px;
+    padding: 0 10px;
+}
+.subject-tag {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: var(--accent-glow);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: default;
+    backdrop-filter: blur(12px);
+}
+.subject-tag:hover {
+    transform: translateY(-2px) scale(1.04);
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.15);
+}
+.subject-tag.gold-tag {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: var(--gold-light);
+    font-weight: 700;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.08);
+}
+.subject-tag.gold-tag:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+}
+
+@media (max-width: 600px) {
+    .subjects-tags-container {
+        gap: 8px;
+        margin-bottom: 35px;
+    }
+    .subject-tag {
+        padding: 6px 14px;
+        font-size: 0.78rem;
+    }
+}
+
