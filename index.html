@@ -255,6 +255,24 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Step 3: Success Screen -->
+            <div id="modal-step-3" style="display: none; text-align: center; padding: 10px 0;">
+                <span class="success-icon" style="font-size: 3.5rem; display: block; margin-bottom: 15px;">🎉</span>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; color: var(--white);">Registration Submitted!</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6;">Your details have been successfully recorded. Please send the payment screenshot on WhatsApp to activate your course.</p>
+                
+                <div class="whatsapp-box" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 16px; padding: 20px; margin-bottom: 24px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">WhatsApp Support</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: var(--green-light); margin-bottom: 8px;">+91 9310615290</div>
+                    <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0;">Message us with your **payment screenshot** to get instant access to the course and private group.</p>
+                </div>
+                
+                <a href="#" id="whatsapp-redirect-btn" target="_blank" class="modal-submit-btn" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="flex-shrink:0;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.417 9.863-9.848.002-2.63-1.023-5.101-2.884-6.965C16.593 1.928 14.136.902 11.516.902c-5.44 0-9.866 4.418-9.87 9.852-.001 1.714.457 3.39 1.324 4.887l-.995 3.635 3.731-.977c1.425.776 2.912 1.185 4.441 1.185zm12.24-7.514c-.266-.134-1.587-.783-1.834-.872-.247-.089-.427-.134-.607.134-.18.269-.697.872-.855 1.05-.157.18-.314.201-.58.067-.266-.134-1.126-.416-2.146-1.326-.792-.707-1.327-1.582-1.483-1.85-.157-.269-.017-.414.117-.547.12-.12.266-.312.4-.468.134-.156.179-.268.269-.446.09-.178.045-.335-.022-.469-.068-.134-.607-1.47-.831-2.007-.219-.529-.46-.456-.63-.465-.162-.008-.349-.01-.536-.01-.188 0-.494.07-.753.357-.258.287-.988.966-.988 2.357 0 1.39.101 2.735.244 2.923.143.188 1.995 3.046 4.831 4.271.674.29 1.2.464 1.61.595.677.215 1.293.185 1.78.113.543-.081 1.587-.648 1.81-.1273.224-.624.224-1.16.157-1.25-.067-.089-.247-.134-.513-.268z"/></svg>
+                    <span>Open WhatsApp &amp; Send Screenshot</span>
+                </a>
+            </div>
         </form>
     </div>
 </div>
@@ -341,6 +359,7 @@
     modal.classList.remove('active');
     setTimeout(() => { 
       modal.style.display = 'none';
+      document.getElementById('modal-step-3').style.display = 'none';
       step2.style.display = 'none';
       step1.style.display = 'block';
       form.reset();
@@ -417,8 +436,18 @@
     } catch (sheetErr) {
       console.error('Google Sheets sync error:', sheetErr);
     } finally {
-      // Redirect the student to the telegram/payment group
-      window.location.href = redirectLink;
+      // Show success screen and prepare WhatsApp custom message
+      submitBtn.disabled = false;
+      spinner.style.display = 'none';
+      
+      step2.style.display = 'none';
+      step1.style.display = 'none';
+      
+      const whatsappBtn = document.getElementById('whatsapp-redirect-btn');
+      const whatsappMsg = `Hi Dr. Gaurav Malik, I have completed the payment for the Final Proff Premium Group.\n\nPlan: ${plan}\nName: ${name}\nPhone: ${phone}\nCollege: ${college}\nTransaction ID: ${transaction_id}\n\nHere is my payment screenshot:`;
+      
+      whatsappBtn.href = `https://wa.me/919310615290?text=${encodeURIComponent(whatsappMsg)}`;
+      document.getElementById('modal-step-3').style.display = 'block';
     }
   });
 
