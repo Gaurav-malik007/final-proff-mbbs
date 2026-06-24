@@ -358,3 +358,151 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 24px 
     }
 }
 
+/* ===== PREMIUM TABS STYLING ===== */
+.tabs-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 36px;
+    margin-bottom: 50px;
+    backdrop-filter: blur(12px);
+}
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+}
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    padding: 12px 28px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tab-btn:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.03);
+}
+.tab-btn.active {
+    color: var(--white);
+    background: linear-gradient(135deg, var(--accent), #1d4ed8);
+    box-shadow: 0 4px 18px rgba(59, 130, 246, 0.4);
+}
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease both;
+}
+.tab-pane.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.tab-pane-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+}
+.tab-text {
+    flex: 1;
+}
+.tab-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    margin-bottom: 14px;
+    color: var(--gold-light);
+}
+.tab-text p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+.textbook-list, .practical-features-list {
+    list-style: none;
+}
+.textbook-list li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.textbook-list li::before {
+    content: '➔';
+    color: var(--gold);
+    font-weight: bold;
+}
+.textbook-list .subject {
+    font-weight: 700;
+    color: var(--white);
+}
+.practical-features-list li {
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+.tab-badge-card {
+    width: 210px;
+    background: rgba(59, 130, 246, 0.04);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.tab-badge-card.practical-badge {
+    background: rgba(16, 185, 129, 0.04);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+.badge-icon {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+    display: block;
+}
+.tab-badge-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+.tab-badge-card p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .tabs-container {
+        padding: 24px;
+    }
+    .tab-pane-layout {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+    .tab-badge-card {
+        width: 100%;
+    }
+    .tab-btn {
+        padding: 10px 18px;
+        font-size: 0.92rem;
+    }
+}
+
+

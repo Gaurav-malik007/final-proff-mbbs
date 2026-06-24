@@ -42,13 +42,56 @@
       <span class="subject-tag">👁️ Ophthalmology</span>
       <span class="subject-tag gold-tag">📖 Bhalani Q&amp;A Lists</span>
     </div>
-    <div class="features-grid">
-      <div class="feature-card"><span class="feature-icon">📚</span><h3>High-Yield University Summaries</h3><p>Concise, exam-focused notes covering every subject — built to replace hundreds of pages of reading.</p></div>
-      <div class="feature-card"><span class="feature-icon">🎯</span><h3>Exclusive Viva &amp; Practical Bank</h3><p>Carefully collected viva questions from real exams so you're never caught off guard at the bedside.</p></div>
-      <div class="feature-card"><span class="feature-icon">♾️</span><h3>Lifetime Access + All Future Updates</h3><p>Pay once. Access everything — including all updates, new additions, and revised summaries — forever.</p></div>
-      <div class="feature-card"><span class="feature-icon">🧠</span><h3>Priority Mentorship &amp; Strategy Calls</h3><p>Get personalised guidance on study strategy, time management, and how to approach each subject for maximum marks.</p></div>
-      <div class="feature-card"><span class="feature-icon">🤝</span><h3>Private Community Access</h3><p>Join a network of serious final-year students. Share insights, ask doubts, and keep each other accountable.</p></div>
-      <div class="feature-card"><span class="feature-icon">⚡</span><h3>Rapid Revision Resources</h3><p>Quick-recall tools, mnemonics, and last-minute cheat sheets for the days right before your exam.</p></div>
+    <!-- Interactive Tabs Section -->
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchTab(event, 'theory-tab')">📚 Theory &amp; Concepts</button>
+        <button class="tab-btn" onclick="switchTab(event, 'practical-tab')">🧪 Practical &amp; Viva Materials</button>
+      </div>
+      <div class="tabs-content">
+        <!-- Tab 1: Theory -->
+        <div id="theory-tab" class="tab-pane active">
+          <div class="tab-pane-layout">
+            <div class="tab-text">
+              <h3>Standard Textbook Reference Gold Mine</h3>
+              <p>Every note and summary is meticulously mapped from standard medical reference textbooks. Ideal for building solid core concepts and writing high-yield answers that university examiners love to see.</p>
+              <ul class="textbook-list">
+                <li><span class="subject">🩺 Medicine:</span> Harrison's Principles of Internal Medicine</li>
+                <li><span class="subject">🔪 Surgery:</span> Bailey &amp; Love's Short Practice of Surgery</li>
+                <li><span class="subject">🤰 OBGYN:</span> DC Dutta's Textbook of Obstetrics &amp; Gynecology</li>
+                <li><span class="subject">👂 ENT:</span> PL Dhingra's Diseases of Ear, Nose and Throat</li>
+                <li><span class="subject">👁️ Ophthalmology:</span> AK Khurana's Comprehensive Ophthalmology</li>
+                <li><span class="subject">👶 Pediatrics:</span> OP Ghai's Essential Pediatrics</li>
+              </ul>
+            </div>
+            <div class="tab-badge-card">
+              <span class="badge-icon">👑</span>
+              <h4>Theory Gold Mine</h4>
+              <p>Comprehensive standard reference material built for distinctions.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 2: Practicals -->
+        <div id="practical-tab" class="tab-pane">
+          <div class="tab-pane-layout">
+            <div class="tab-text">
+              <h3>Separate &amp; Special Practical Library</h3>
+              <p>Practicals need a completely different approach. Get dedicated case presentations, instruments, emergency drugs, and spotters checklists tailored for each subject individually.</p>
+              <ul class="practical-features-list">
+                <li><strong>✅ Structured Case Presentation Formats:</strong> History taking, physical examination, and discussion templates for Medicine, Surgery, and OBGYN.</li>
+                <li><strong>✅ Instrument &amp; Specimen Viva Guides:</strong> High-yield questions and images of surgical tools, ENT speculums, and ophthalmic instruments.</li>
+                <li><strong>✅ Subject-Wise Milestone &amp; Refraction Guides:</strong> Pediatrics developmental charts, ENT tuning fork algorithms, and Ophthalmology refraction spotters.</li>
+                <li><strong>✅ Bedside Table Viva Questions:</strong> Common ward round spotters and examiner-favorite viva questions.</li>
+              </ul>
+            </div>
+            <div class="tab-badge-card practical-badge">
+              <span class="badge-icon">🎯</span>
+              <h4>Practical Vault</h4>
+              <p>Separate materials for all final year clinical practical exams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="screenshot-section reveal">
@@ -191,6 +234,18 @@
       window.location.href = redirectLink;
     }
   });
+
+  // Tab switcher function
+  window.switchTab = function(evt, tabId) {
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+  };
 </script>
 </body>
 </html>
